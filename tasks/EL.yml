@@ -1,0 +1,27 @@
+---
+- name: install marathon
+  yum: state=present name={{item}}
+  with_items:
+    - marathon
+
+- name: create /etc/marathon/conf
+  file: >-
+    owner=root
+    group=root
+    mode="go-w"
+    path=/etc/marathon/conf
+    state=directory
+
+- name: install /etc/marathon/conf/* files
+  template: >
+    src=etc/marathon/conf/{{item}}.j2
+    dest=/etc/marathon/conf/{{item}}
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - hostname
+    - master
+    - zk
+    
+
