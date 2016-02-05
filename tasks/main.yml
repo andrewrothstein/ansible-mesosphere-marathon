@@ -8,7 +8,5 @@
   include: Debian.yml
 
 - name: start marathon service
-  service: name={{item}} enabled=yes state=restarted
-  with_items:
-    - marathon
+  service: name=marathon enabled=yes state=started
   

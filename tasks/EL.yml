@@ -1,14 +1,12 @@
 ---
 - name: install marathon
-  yum: state=present name={{item}}
-  with_items:
-    - marathon
+  package: state=present name=marathon
 
 - name: create /etc/marathon/conf
   file: >-
     owner=root
     group=root
-    mode="go-w"
+    mode=0644
     path=/etc/marathon/conf
     state=directory
 
