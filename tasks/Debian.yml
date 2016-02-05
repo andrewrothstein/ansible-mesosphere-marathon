@@ -1,23 +1,5 @@
 ---
-- name: create /etc/marathon/conf
-  file: >-
-    owner=root
-    group=root
-    mode=0644
-    path=/etc/marathon/conf
-    state=directory
-    
-- name: install /etc/marathon/conf/* files
-  template: >
-    src=etc/marathon/conf/{{item}}.j2
-    dest=/etc/marathon/conf/{{item}}
-    owner=root
-    group=root
-    mode=0644
-  with_items:
-    - hostname
-    - master
-    - zk
+- include: write-configs.yml
     
 - name: install marathon
   package: state=present name=marathon
