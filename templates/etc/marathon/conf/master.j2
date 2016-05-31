@@ -1,1 +1,1 @@
-zk://{% for host in groups['mesosmaster'] %}{{hostvars[host]['ansible_default_ipv4']['address']}}:2181{% if not loop.last %},{% endif %}{% endfor %}/mesos
+zk://{% for host in groups['mesosmaster'] %}{{hostvars[host]['ansible_' + hostvars[host]['mesosphere_marathon_zk_iface']]['ipv4']['address']}}:{{mesosphere_marathon_zk_clientPort}}{% if not loop.last %},{% endif %}{% endfor %}/mesos
